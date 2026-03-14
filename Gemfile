@@ -2,9 +2,13 @@
 
 source "https://rubygems.org"
 
+ruby ">= 3.1"
+
 gem "jekyll-theme-chirpy", "~> 7.4", ">= 7.4.1"
 
 gem "html-proofer", "~> 5.0", group: :test
+
+gem "logger"
 
 platforms :mingw, :x64_mingw, :mswin, :jruby do
   gem "tzinfo", ">= 1", "< 3"
