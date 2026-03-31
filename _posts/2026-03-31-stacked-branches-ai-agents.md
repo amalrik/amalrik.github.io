@@ -111,6 +111,16 @@ That's it. One command, and Git figures out the entire dependency chain and reba
 
 This single command is what makes stacked branches practical in 2026. It's the key that unlocks the entire workflow.
 
+## Git Configuration for Stacked Branches
+
+If you plan to use stacked branches regularly, add this to your global Git config:
+
+```bash
+git config --global rebase.updateRefs true
+```
+
+With this setting enabled, every `git rebase` command automatically updates all downstream branches. You no longer need to remember the `--update-refs` flag — it just works.
+
 ## Why This Works Better with AI Agents
 
 Here's where stacked branches really shine in the AI era:
