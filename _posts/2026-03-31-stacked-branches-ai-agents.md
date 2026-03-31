@@ -166,3 +166,7 @@ The workflow might feel unfamiliar at first — especially if you're used to one
 The next time you work with an AI agent, try this: before asking it to write code, first ask it to create a branch. Then ask for a small, focused change. Review and merge. Repeat.
 
 Your code reviewers (and your future self) will thank you.
+
+## External References
+
+Forgot to mention if you're using lazygit like me, I highly recommend this video from the lazygit creator himself: https://www.youtube.com/watch?v=M6S-9Y8peDY
