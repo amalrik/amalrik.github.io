@@ -169,4 +169,4 @@ Your code reviewers (and your future self) will thank you.
 
 ## External References
 
-Forgot to mention if you're using lazygit like me, I highly recommend this video from the lazygit creator himself: https://www.youtube.com/watch?v=M6S-9Y8peDY
+Forgot to mention if you're using lazygit like me, I highly recommend [this video from the lazygit creator](https://www.youtube.com/watch?v=M6S-9Y8peDY).
