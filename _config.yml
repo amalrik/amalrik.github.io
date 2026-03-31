@@ -58,10 +58,8 @@ webmaster_verifications:
 
 # Web Analytics Settings
 analytics:
-  google:
-    id: UA-163699100-1
   goatcounter:
-    id: # fill in your GoatCounter ID
+    id: coffedutty
   umami:
     id: # fill in your Umami ID
     domain: # fill in your Umami domain
@@ -75,7 +73,7 @@ analytics:
 
 # Page views settings
 pageviews:
-  provider: # now only supports 'goatcounter'
+  provider: goatcounter
 
 # Prefer color scheme setting.
 #
