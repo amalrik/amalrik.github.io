@@ -13,13 +13,13 @@ Esse post é minha tentativa de desmistificar esse tema de uma vez.
 
 ## Por que voce esquece de usar blocos em suas soluções?
 
-Isso se deve ao fato de pensarmos em em metodos como caixas fechadas, uma herança do modelo mental de C ou Java(antigo), onde tudo que é conhecido precisa ser passado por parametro. Em outras palavras voce não teve contato bastante com o conceito de closures, um dos conceitos mais subestimados, relevantes e poderosos em programação.
+Isso se deve ao fato de pensarmos em em metodos como caixas fechadas, uma herança do modelo mental de C ou Java(antigo), onde tudo que é conhecido precisa ser passado por parametro. Em outras palavras voce não teve contato bastante com o conceito de closures, um dos conceitos mais subestimados, relevantes e poderoso em programação.
 
-O modelo mental de closures não casa bem o modelo mentao de objetos e substantivos, ele te força a pensar em verbos e processos.
+O modelo mental de closures não casa bem com o modelo mentao de objetos e substantivos, ele te força a pensar em verbos e processos.
 
 Sempre que você se pegar escrevendo a mesma "moldura" de código em vários lugares (ex: abrir conexão, fazer algo, fechar conexão), pare. Crie um método que use `yield` e transforme o "fazer algo" em um bloco.
 
-exemplo ao inves de fazer isso:
+Exemplo ao invés de fazer isso:
 ```ruby
 db = Conexao.conectar
 db.query("...")
@@ -45,7 +45,7 @@ Pense no yield como uma forma de expressar:
 Esse conceito é simples e poderoso, tanto que o proprio ruby o utiliza exaustivamentee como em `File.open { ... }` onde voce abre um arquivo entrega para voce e garante que ele feche depois.
 
 ## Blocos são a implementacao em ruby de closures
-Em linguagens que não suportam closures de forma nativa ou simples (como o C puro), uma função é como um trabalhador com amnésia. Ela recebe ordens (parâmetros), executa e vai embora. Se ela precisar de uma informação que não foi passada no "contrato" (parâmetros), ela simplesmente não consegue acessar, a menos que a informação seja **Global** (o que é perigoso).
+Em linguagens que não suportam closures de forma nativa ou simples (como o C puro), uma função é como um trabalhista com amnésia. Ela recebe ordens (parâmetros), executa e vai embora. Se ela precisar de uma informação que não foi passada no "contrato" (parâmetros), ela simplesmente não consegue acessar, a menos que a informação seja **Global** (o que é perigoso).
 
 O problema fundamental que as closures resolvem é a **Preservação de Contexto sem Poluição Global**.
 
@@ -57,7 +57,7 @@ Sem closures, para levar um dado de um ponto A para um ponto B dentro de uma ló
 
 A closure resolve isso "congelando" o ambiente ao redor do código. Ela não é apenas uma lista de instruções; ela é um **objeto que carrega o seu lugar de origem**.
 
-### o que é o yield?
+### O que é o yield?
 yield é uma instrução direta para a VM que cria um ponteiro para o contexto onde o bloco foi chamado. Em outras palavras: em ruby o yield olha para um ponteiro chamado EP(enviromento Pointer). Esse ponteiro diz a VM: "Ei, se o codigo do bloco pedir pela variavel x e ela nao estiver aqui dentro, olhe nesse endereço de memoria aqui, que era onde o bloco nasceu".
 
 Por isso que isto funciona:
@@ -93,10 +93,10 @@ executar_comando
 # Saída: Aviso: Nenhum comando foi enviado para execução.
 
 # Uso padrão (com bloco):
-executar_comando { puts "Executando: Limpeza de Cache 🧹" }
+executar_comando { puts "Executando: Limpeza de Cache" }
 # Saída: 
 # Iniciando sistema...
-# Executando: Limpeza de Cache 🧹
+# Executando: Limpeza de Cache
 # Sistema finalizado.
 ```
 
@@ -112,7 +112,6 @@ Ao contrário do que muitos pensam, o `yield` não cria um objeto na memória pa
 Isso significa que:
 
 1. **Performance Cirúrgica:** O Ruby apenas pausa o método atual e salta para o endereço de memória do bloco. Não há criação de objetos pesados.
-    
 2. **Eficiência de Escopo:** Graças ao **EP (Environment Pointer)**, o bloco acessa as variáveis de fora sem precisar que o Ruby faça cópias de dados. Ele apenas aponta para onde elas já estão.
 
 
