@@ -1,10 +1,12 @@
 ---
+lang: en
 layout: post
 title: "Stacked branches: why your AI agent code reviews will improve dramatically"
 date: 2026-03-31 10:00:00 -0300
 categories: [git, workflow, ai]
 tags: [git, stacked-branches, code-review, ai-agents]
 ---
+lang: en
 
 You've just finished explaining a feature to your AI coding assistant. After a few minutes of typing, it proudly announces: "Done! I've made changes to 12 files across 4 different subsystems."
 

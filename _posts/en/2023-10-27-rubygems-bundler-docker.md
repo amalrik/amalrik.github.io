@@ -1,10 +1,12 @@
 ---
+lang: en
 layout: post
 title: "RubyGems, Bundler, and Docker: The Complete Guide to Private Gem Authentication"
 date: 2025-11-20 21:00:00 -0300
 categories: [ruby, docker, devops, bundler]
 tags: [ruby-on-rails, jfrog, artifactory, troubleshooting]
 ---
+lang: en
 
 Have you ever faced a situation where `bundle install` runs perfectly in CI or inside a Docker container, but fails miserably on your local machine with a `Bad username or password` error?
 
