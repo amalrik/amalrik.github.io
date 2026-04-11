@@ -1,4 +1,7 @@
 ---
 layout: home
-# Index page
+# Index page - filtered by language
 ---
+
+{% assign lang = site.active_lang %}
+{% assign posts = site.posts | where: 'lang', lang | sort: 'date' | reverse %}

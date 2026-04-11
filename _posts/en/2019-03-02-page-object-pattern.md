@@ -1,10 +1,9 @@
 ---
-lang: en
 layout: post
 title:  "Using Page Object Pattern in rspec"
 date:   2019-03-01 11:06:51
----
 lang: en
+---
 
 The page object pattern is a handy technique you can use to simplify the interaction with forms in a web app.
 

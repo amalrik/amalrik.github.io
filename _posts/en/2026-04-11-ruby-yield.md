@@ -3,6 +3,7 @@ layout: post
 title: "Why Ruby blocks are misunderstood"
 date: 2026-04-11 10:00:00
 lang: en
+permalink: /posts/ruby-yield/
 categories: [ruby]
 tags: [ruby, yield, closures]
 ---

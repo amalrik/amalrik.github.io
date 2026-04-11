@@ -1,0 +1,12 @@
+<!-- language switcher -->
+<div class="lang-switcher">
+  {% for lang in site.languages %}
+    {% unless lang == site.active_lang %}
+      {% assign lang_name = site.data.locales[lang].name %}
+      {% assign lang_url = page.permalink_lang[lang] | default: page.url %}
+      <a {% static_href %}href="{{ lang_url }}"{% endstatic_href %}>
+        {{ lang_name }}
+      </a>
+    {% endunless %}
+  {% endfor %}
+</div>

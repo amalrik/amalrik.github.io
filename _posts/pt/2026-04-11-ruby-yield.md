@@ -3,7 +3,7 @@ layout: post
 title: "Por que blocos em Ruby são mal compreendidos?"
 date: 2026-04-11 10:00:00
 lang: pt
-ref: ruby-yield-logic
+permalink: /posts/ruby-yield/
 ---
 
 yield convenhamos é uma palavra que traduz de forma pobre para outras linguas no meu caso o portugues. A tradução mais proxima que eu consegui pensar foi "ceder" o que não passa uma ideia boa do conceito. Na minha carreira eu ja tive oportunidade de trabalhar com programadores de diferentes niveis de senioridade e me impressionou que o uso de blocos em ruby nem sempre é aplicado.
@@ -67,11 +67,13 @@ end
 ```
 
 ### Para que serve o yield?
-| **Função**                      | **O que faz**                                                                                                | **Exemplo Prático**                         |
-| ------------------------------- | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------- |
-| **Encapsulamento**              | Permite que variáveis vivam além do fim da execução de um escopo, mas fiquem protegidas de acessos externos. | Criar contadores privados sem usar classes. |
-| **Adiamento (Lazy Evaluation)** | Você define o _que_ fazer agora, mas decide _quando_ rodar depois, mantendo o acesso aos dados originais.    | Callbacks de eventos ou requisições HTTP.   |
-| **Injeção de Comportamento**    | O método define a infraestrutura (`start_time`, `end_time`), e a closure injeta a inteligência.              | benchmarks/medição de tempo de execução     |
+
+| Função | O que faz | Exemplo Prático |
+|--------|----------|----------------|
+| **Encapsulamento** | Permite que variáveis vivam além do fim da execução de um escopo, mas fiquem protegidas de acessos externos. | Criar contadores privados sem usar classes. |
+| **Adiamento (Lazy Evaluation)** | Você define o *que* fazer agora, mas decide *quando* rodar depois, mantendo o acesso aos dados originais. | Callbacks de eventos ou requisições HTTP. |
+| **Injeção de Comportamento** | O método define a infraestrutura (`start_time`, `end_time`), e a closure injeta a inteligência. | Benchmarks/medição de tempo de execução |
+
 Nota: Nem sempre quem usa seu método enviará um bloco. Para evitar que seu código "exploda" com um `LocalJumpError`, o Ruby oferece o método `block_given?`. Ele é o porteiro que verifica se há uma "estratégia" antes de tentar ceder o controle.
 exemplo:
 ```ruby
