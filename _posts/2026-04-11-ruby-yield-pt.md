@@ -4,7 +4,7 @@ title: "Por que blocos em Ruby são mal compreendidos?"
 date: 2026-04-11 10:00:00
 lang: pt
 permalink: /posts/ruby-yield-pt/
-categories: [ruby]
+categories: [ruby, fundamentos]
 tags: [ruby, yield, closures]
 ---
 
@@ -48,6 +48,16 @@ Esse conceito é simples e poderoso, tanto que o proprio ruby o utiliza exaustiv
 Em linguagens que não suportam closures de forma nativa ou simples (como o C puro), uma função é como um trabalhista com amnésia. Ela recebe ordens (parâmetros), executa e vai embora. Se ela precisar de uma informação que não foi passada no "contrato" (parâmetros), ela simplesmente não consegue acessar, a menos que a informação seja **Global** (o que é perigoso).
 
 O problema fundamental que as closures resolvem é a **Preservação de Contexto sem Poluição Global**.
+Essa frase é uma forma rebuscada de dizer que o seu código ganha uma "mochila particular" para carregar seus segredos.
+
+Em termos simples:
+
+  - Preservação de Contexto: Significa que o bloco não sofre daquela "amnésia" das funções comuns; ele lembra e carrega as variáveis de onde ele nasceu, não importa para onde ele viaje no seu programa.
+
+  - Sem Poluição Global: Significa que ele faz isso de forma privada. Ele não precisa gritar essas informações para todo o sistema ouvir (criando variáveis globais), o que evita que outros processos acabem "tropeçando" ou quebrando seus dados por acidente.
+
+Basicamente, é a diferença entre anotar um segredo em um diário que você leva no bolso (Closure) versus escrevê-lo em um outdoor no meio da cidade (Global) só para não esquecer.
+Em termos técnicos, dizemos que a closure se 'fecha sobre' o seu escopo léxico, garantindo que essas variáveis permaneçam vivas enquanto o bloco precisar delas. É por isso que, no Ruby, o bloco nunca sofre de amnésia: ele carrega consigo o DNA do lugar onde nasceu.
 
 ### O problema do escopo Mudo
 Sem closures, para levar um dado de um ponto A para um ponto B dentro de uma lógica complexa, você teria que:

@@ -4,7 +4,7 @@ title: "Why Ruby blocks are misunderstood"
 date: 2026-04-11 10:00:00
 lang: en
 permalink: /posts/ruby-yield/
-categories: [ruby]
+categories: [ruby, fundamentals]
 tags: [ruby, yield, closures]
 ---
 
@@ -47,6 +47,16 @@ This concept is so simple and powerful that Ruby itself uses it exhaustively, li
 In languages that don't support closures natively or simply (like pure C), a function is like a worker with amnesia. It receives orders (parameters), executes, and leaves. If it needs information that wasn't passed in the "contract" (parameters), it simply can't access it, unless the information is **Global** (which is dangerous).
 
 The fundamental problem that closures solve is **Global Context Preservation without Global Pollution**.
+This is just a fancy way of saying that your code gets a private backpack to carry its secrets.
+
+In simpler terms:
+
+  - Preserving Context: This means the block doesn't suffer from the "amnesia" typical of standard functions. It remembers and carries the variables from its birthplace, no matter where it travels in your program.
+
+  - Without Global Pollution: It does this privately. It doesn't need to shout information for the whole system to hear (by using global variables), which prevents other parts of your code from accidentally tripping over or breaking your data.
+
+  It is the difference between writing a secret in a diary you keep in your pocket (Closure) versus writing it on a billboard in the middle of the city (Global) just so you won't forget it.
+  The closure 'closes over' its lexical scope, ensuring those variables stay alive as long as the block needs them.
 
 ### The Mute Scope Problem
 Without closures, to carry a piece of data from point A to point B within complex logic, you would have to:
