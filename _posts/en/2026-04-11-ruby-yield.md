@@ -8,7 +8,7 @@ categories: [ruby]
 tags: [ruby, yield, closures]
 ---
 
-yield, honestly, is a word that translates poorly to other languages. In my case (Portuguese), the closest translation I could think of was "to yield" or "to give up," which doesn't convey the concept well. Throughout my career, I've had the opportunity to work with programmers of different seniority levels, and I've been surprised how often Ruby blocks aren't used properly. This post is my attempt to demystify this topic once and for all.
+yield, honestly, is a word that translates poorly to other languages. The closest translation I could think in my native language (Portuguese) was "Ceder" (to yield) or "Desistir" (to give up), which doesn't convey the concept well. Throughout my career, I've had the opportunity to work with programmers of different seniority levels, and I've been surprised how often Ruby blocks aren't used properly. This post is my attempt to demystify this topic once and for all.
 
 ## Why do you forget to use blocks in your solutions?
 

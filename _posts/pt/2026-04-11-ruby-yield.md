@@ -3,7 +3,9 @@ layout: post
 title: "Por que blocos em Ruby são mal compreendidos?"
 date: 2026-04-11 10:00:00
 lang: pt
-permalink: /posts/ruby-yield/
+permalink: /posts/ruby-yield-pt/
+categories: [ruby]
+tags: [ruby, yield, closures]
 ---
 
 yield convenhamos é uma palavra que traduz de forma pobre para outras linguas no meu caso o portugues. A tradução mais proxima que eu consegui pensar foi "ceder" o que não passa uma ideia boa do conceito. Na minha carreira eu ja tive oportunidade de trabalhar com programadores de diferentes niveis de senioridade e me impressionou que o uso de blocos em ruby nem sempre é aplicado.
@@ -51,10 +53,10 @@ O problema fundamental que as closures resolvem é a **Preservação de Contexto
 Sem closures, para levar um dado de um ponto A para um ponto B dentro de uma lógica complexa, você teria que:
 
 1. Passar o dado por todos os métodos intermediários (mesmo que eles não o usem).
-    
 2. Ou criar uma variável global (que todo mundo pode quebrar).
 
 A closure resolve isso "congelando" o ambiente ao redor do código. Ela não é apenas uma lista de instruções; ela é um **objeto que carrega o seu lugar de origem**.
+
 ### o que é o yield?
 yield é uma instrução direta para a VM que cria um ponteiro para o contexto onde o bloco foi chamado. Em outras palavras: em ruby o yield olha para um ponteiro chamado EP(enviromento Pointer). Esse ponteiro diz a VM: "Ei, se o codigo do bloco pedir pela variavel x e ela nao estiver aqui dentro, olhe nesse endereço de memoria aqui, que era onde o bloco nasceu".
 
@@ -68,14 +70,15 @@ end
 
 ### Para que serve o yield?
 
-| Função | O que faz | Exemplo Prático |
-|--------|----------|----------------|
-| **Encapsulamento** | Permite que variáveis vivam além do fim da execução de um escopo, mas fiquem protegidas de acessos externos. | Criar contadores privados sem usar classes. |
-| **Adiamento (Lazy Evaluation)** | Você define o *que* fazer agora, mas decide *quando* rodar depois, mantendo o acesso aos dados originais. | Callbacks de eventos ou requisições HTTP. |
-| **Injeção de Comportamento** | O método define a infraestrutura (`start_time`, `end_time`), e a closure injeta a inteligência. | Benchmarks/medição de tempo de execução |
+| **Function**                    | **What it does**                                                                                          | **Practical Example**                  |
+| ------------------------------- | ------------------------------------------------------------------------------------------------------- | ----------------------------------- |
+| **Encapsulamento** | Allows variables to live beyond the end of a scope execution, but stay protected from external access. | Create private counters without using classes. |
+| **Lazy Evaluation** | You define _what_ to do now, but decide _when_ to run later, keeping access to original data. | Event callbacks or HTTP requests. |
+| **Behavior Injection** | The method defines the infrastructure (`start_time`, `end_time`), and the closure injects the intelligence. | benchmarks/execution time measurement |
 
 Nota: Nem sempre quem usa seu método enviará um bloco. Para evitar que seu código "exploda" com um `LocalJumpError`, o Ruby oferece o método `block_given?`. Ele é o porteiro que verifica se há uma "estratégia" antes de tentar ceder o controle.
-exemplo:
+
+Exemplo:
 ```ruby
 def executar_comando
   return puts "Aviso: Nenhum comando foi enviado para execução." unless block_given?
@@ -96,6 +99,7 @@ executar_comando { puts "Executando: Limpeza de Cache 🧹" }
 # Executando: Limpeza de Cache 🧹
 # Sistema finalizado.
 ```
+
 ### Yield é um padrão de projeto simplificado
 O yield é o padrao de projeto Strategy implementado nativamente na linguagem.
 Isso mesmo, para fazer o que o yield faz em Java (antes do Java8) voce precisaria criar um interface, uma classe que implementasse essa interface e instanciar um objeto.
