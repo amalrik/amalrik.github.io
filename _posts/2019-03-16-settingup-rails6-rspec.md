@@ -2,6 +2,7 @@
 layout: post
 title:  "Setting up your Rails 6, Rspec, Factorybot"
 date:   2019-03-14 18:16:51
+lang: en
 ---
 
 This is a base line guide to setup a solid rails project in no time.

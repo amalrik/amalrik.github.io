@@ -1,0 +1,8 @@
+# The layout text of site
+name: pt
+tabs:
+  home: Home
+  categories: Categorias
+  tags: Tags
+  archives: Arquivos
+  about: Sobre

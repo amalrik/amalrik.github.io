@@ -8,6 +8,15 @@ theme: jekyll-theme-chirpy
 # otherwise, the layout language will use the default value of 'en'.
 lang: en
 
+# Jekyll-Polyglot Configuration
+languages: ["en", "pt"]
+default_lang: "en"
+lang_from_path: true
+parallel_localization: true
+
+plugins:
+  - jekyll-polyglot
+
 # Change to your timezone › https://zones.arilyn.cc
 timezone:
 
@@ -171,14 +180,12 @@ collections:
 
 defaults:
   - scope:
-      path: "" # An empty string here means all files in the project
+      path: ""
       type: posts
     values:
       layout: post
-      comments: true # Enable comments in posts.
-      toc: true # Display TOC column in posts.
-      # DO NOT modify the following parameter unless you are confident enough
-      # to update the code of all other post links in this project.
+      comments: true
+      toc: true
       permalink: /posts/:title/
   - scope:
       path: _drafts
@@ -186,7 +193,7 @@ defaults:
       comments: false
   - scope:
       path: ""
-      type: tabs # see `site.collections`
+      type: tabs
     values:
       layout: page
       permalink: /:title/

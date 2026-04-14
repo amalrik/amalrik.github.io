@@ -1,0 +1,10 @@
+{% assign filtered_posts = '' | split: '' %}
+{% assign lang = site.active_lang %}
+
+{% for post in include.posts %}
+  {% if post.lang == lang %}
+    {% assign filtered_posts = filtered_posts | push: post %}
+  {% endif %}
+{% endfor %}
+
+{{ filtered_posts }}

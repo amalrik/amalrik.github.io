@@ -1,10 +1,12 @@
 ---
+lang: en
 layout: post
 title: "Having the cake and eating it too: Introduction to delegated types in rails"
 date: 2026-04-07 10:40:00 -0300
 categories: [ruby, refactoring, design-patterns]
 tags: [ruby-on-rails, delegated-types, active-record]
 ---
+lang: en
 
 Imagine you work for _Connection CRM_ a vital tool for your sales and support team. Your boss asks you to develop an easy way
 to visualize different events in a single screen.
