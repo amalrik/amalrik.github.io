@@ -8,16 +8,16 @@ categories: [ruby, fundamentos]
 tags: [ruby, yield, closures]
 ---
 
-yield convenhamos é uma palavra que traduz de forma pobre para outras linguas no meu caso o portugues. A tradução mais proxima que eu consegui pensar foi "ceder" o que não passa uma ideia boa do conceito. Na minha carreira eu ja tive oportunidade de trabalhar com programadores de diferentes niveis de senioridade e me impressionou que o uso de blocos em ruby nem sempre é aplicado.
+yield convenhamos é uma palavra que traduz de forma pobre para outras linguas. A tradução mais proxima que eu consegui pensar foi "ceder" o que não passa uma ideia boa do conceito. Na minha carreira eu ja tive oportunidade de trabalhar com programadores de diferentes niveis de senioridade e algo que me impressionou foi que o uso de blocos em ruby nem sempre é aplicado em todo o seu potencial.
 Esse post é minha tentativa de desmistificar esse tema de uma vez.
 
 ## Por que voce esquece de usar blocos em suas soluções?
 
-Isso se deve ao fato de pensarmos em em metodos como caixas fechadas, uma herança do modelo mental de C ou Java(antigo), onde tudo que é conhecido precisa ser passado por parametro. Em outras palavras voce não teve contato bastante com o conceito de closures, um dos conceitos mais subestimados, relevantes e poderoso em programação.
+Isso se deve ao fato de pensarmos em métodos como caixas pretas, uma herança do modelo mental de C ou Java(antigo), onde tudo que é conhecido precisa ser passado por parâmetro. Em outras palavras voce não teve contato bastante com o conceito de closures, um dos conceitos mais elegantes, relevantes e poderoso em programação.
 
-O modelo mental de closures não casa bem com o modelo mentao de objetos e substantivos, ele te força a pensar em verbos e processos.
+O modelo mental de closures não casa bem com o modelo mental de objetos e substantivos, ele te força a pensar em verbos e processos.
 
-Sempre que você se pegar escrevendo a mesma "moldura" de código em vários lugares (ex: abrir conexão, fazer algo, fechar conexão), pare. Crie um método que use `yield` e transforme o "fazer algo" em um bloco.
+Sempre que você se pegar escrevendo o mesmo boilerplate em vários lugares (ex: abrir conexão, fazer algo, fechar conexão), pare. Crie um método que use `yield` e transforme o "fazer algo" em um bloco.
 
 Exemplo ao invés de fazer isso:
 ```ruby
@@ -42,7 +42,7 @@ com_banco_de_dados { |db| db.query("...") }
 Pense no yield como uma forma de expressar:
 "eu sei fazer algo mas deixo para voce(quem chamou o metodo) implementar os detalhes"
 
-Esse conceito é simples e poderoso, tanto que o proprio ruby o utiliza exaustivamentee como em `File.open { ... }` onde voce abre um arquivo entrega para voce e garante que ele feche depois.
+Esse conceito é simples e poderoso, tanto que o próprio Ruby o utiliza exaustivamente, como em `File.open { ... }` onde voce abre um arquivo entrega para voce e garante que ele feche depois.
 
 ## Blocos são a implementacao em ruby de closures
 Em linguagens que não suportam closures de forma nativa ou simples (como o C puro), uma função é como um trabalhista com amnésia. Ela recebe ordens (parâmetros), executa e vai embora. Se ela precisar de uma informação que não foi passada no "contrato" (parâmetros), ela simplesmente não consegue acessar, a menos que a informação seja **Global** (o que é perigoso).
@@ -68,7 +68,7 @@ Sem closures, para levar um dado de um ponto A para um ponto B dentro de uma ló
 A closure resolve isso "congelando" o ambiente ao redor do código. Ela não é apenas uma lista de instruções; ela é um **objeto que carrega o seu lugar de origem**.
 
 ### O que é o yield?
-yield é uma instrução direta para a VM que cria um ponteiro para o contexto onde o bloco foi chamado. Em outras palavras: em ruby o yield olha para um ponteiro chamado EP(enviromento Pointer). Esse ponteiro diz a VM: "Ei, se o codigo do bloco pedir pela variavel x e ela nao estiver aqui dentro, olhe nesse endereço de memoria aqui, que era onde o bloco nasceu".
+yield é uma instrução direta para a VM que cria um ponteiro para o contexto onde o bloco foi chamado. Em outras palavras: em Ruby o yield olha para um ponteiro chamado EP (Environment Pointer). Esse ponteiro diz a VM: "Ei, se o codigo do bloco pedir pela variavel x e ela nao estiver aqui dentro, olhe nesse endereço de memoria aqui, que era onde o bloco nasceu".
 
 Por isso que isto funciona:
 ```ruby
@@ -80,11 +80,11 @@ end
 
 ### Para que serve o yield?
 
-| **Function**                    | **What it does**                                                                                          | **Practical Example**                  |
+| **Função**                    | **O que faz**                                                                                          | **Exemplo Prático**                  |
 | ------------------------------- | ------------------------------------------------------------------------------------------------------- | ----------------------------------- |
-| **Encapsulamento** | Allows variables to live beyond the end of a scope execution, but stay protected from external access. | Create private counters without using classes. |
-| **Lazy Evaluation** | You define _what_ to do now, but decide _when_ to run later, keeping access to original data. | Event callbacks or HTTP requests. |
-| **Behavior Injection** | The method defines the infrastructure (`start_time`, `end_time`), and the closure injects the intelligence. | benchmarks/execution time measurement |
+| **Encapsulamento** | Permite que variáveis vivam além do fim da execução de um escopo, mas permaneçam protegidas de acesso externo. | Criar contadores privados sem usar classes. |
+| **Avaliação Preguiçosa** | Você define _o que_ fazer agora, mas decide _quando_ executar depois, mantendo acesso aos dados originais. | Callbacks de eventos ou requisições HTTP. |
+| **Injeção de Comportamento** | O método define a infraestrutura (`start_time`, `end_time`), e a closure fornece o comportamento. | Um benchmark ou medição de tempo de execução |
 
 Nota: Nem sempre quem usa seu método enviará um bloco. Para evitar que seu código "exploda" com um `LocalJumpError`, o Ruby oferece o método `block_given?`. Ele é o porteiro que verifica se há uma "estratégia" antes de tentar ceder o controle.
 
@@ -99,7 +99,7 @@ def executar_comando
 end
 
 # Uso seguro (sem bloco):
-executar_comando 
+executar_comando
 # Saída: Aviso: Nenhum comando foi enviado para execução.
 
 # Uso padrão (com bloco):

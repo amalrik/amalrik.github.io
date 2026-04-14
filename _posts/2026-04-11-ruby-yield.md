@@ -12,11 +12,11 @@ yield, honestly, is a word that translates poorly to other languages. The closes
 
 ## Why do you forget to use blocks in your solutions?
 
-This is because we think of methods as closed boxes - a mental model inherited from C or (old) Java, where everything known must be passed as a parameter. In other words, you haven't had enough exposure to the concept of closures, one of the most underestimated, relevant, and powerful concepts in programming.
+This is because we think of methods as black boxes - a mental model inherited from C or (old) Java, where everything known must be passed as a parameter. In other words, you haven't had enough exposure to the concept of closures, one of the most elegant, relevant, and powerful concepts in programming.
 
 The mental model of closures doesn't fit well with the object and noun-based mental model - it forces you to think in verbs and processes.
 
-Whenever you find yourself writing the same "frame" of code in multiple places (e.g., open connection, do something, close connection), stop. Create a method that uses `yield` and turn the "do something" into a block.
+Whenever you find yourself writing the same boilerplate in multiple places (e.g., open connection, do something, close connection), stop. Create a method that uses `yield` and turn the "do something" into a block.
 
 Example instead of doing this:
 ```ruby
@@ -25,7 +25,7 @@ db.query("...")
 db.disconnect
 ```
 
-Do this:
+Do this instead:
 ```ruby
 def with_database
   db = Connection.connect
@@ -44,7 +44,7 @@ Think of yield as a way to express:
 This concept is so simple and powerful that Ruby itself uses it exhaustively, like in `File.open { ... }` where you open a file, hand it to you, and guarantee it closes afterward.
 
 ## Blocks are Ruby's implementation of closures
-In languages that don't support closures natively or simply (like pure C), a function is like a worker with amnesia. It receives orders (parameters), executes, and leaves. If it needs information that wasn't passed in the "contract" (parameters), it simply can't access it, unless the information is **Global** (which is dangerous).
+In languages that don't support closures natively (like C), a function is like a worker with amnesia. It receives orders (parameters), executes, and leaves. If it needs information that wasn't passed in the "contract" (parameters), it simply can't access it, unless the information is **Global** (which is dangerous).
 
 The fundamental problem that closures solve is **Global Context Preservation without Global Pollution**.
 This is just a fancy way of saying that your code gets a private backpack to carry its secrets.
@@ -83,7 +83,7 @@ end
 | ------------------------------- | ------------------------------------------------------------------------------------------------------- | ----------------------------------- |
 | **Encapsulation**               | Allows variables to live beyond the end of a scope execution, but stay protected from external access. | Create private counters without using classes. |
 | **Lazy Evaluation**            | You define _what_ to do now, but decide _when_ to run later, keeping access to original data. | Event callbacks or HTTP requests. |
-| **Behavior Injection**         | The method defines the infrastructure (`start_time`, `end_time`), and the closure injects the intelligence. | benchmarks/execution time measurement |
+| **Behavior Injection**         | The method defines the infrastructure (`start_time`, `end_time`), and the closure provides the behavior. | A benchmark or execution time measurement |
 
 Note: Not everyone who uses your method will send a block. To prevent your code from "exploding" with a `LocalJumpError`, Ruby offers the method `block_given?`. It's the doorman that checks if there's a "strategy" before trying to yield control.
 
@@ -98,7 +98,7 @@ def execute_command
 end
 
 # Safe usage (without block):
-execute_command 
+execute_command
 # Output: Warning: No command was sent for execution.
 
 # Standard usage (with block):
