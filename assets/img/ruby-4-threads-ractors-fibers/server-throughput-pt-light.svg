@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 420" width="720" height="420" role="img" aria-label="Modelos de servidor: vazão">
+<rect width="720" height="420" rx="12" fill="#fcfcfb"/>
+<text x="24" y="34" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="17" font-weight="600" fill="#0b0b0b">Modelos de servidor: vazão</text>
+<text x="24" y="56" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="13" fill="#52514e">Sessões parecidas com SMTP · Hetzner CPX42 (4 vCPU servidor + 4 gerador) · Ruby 4.1</text>
+<line x1="64" x2="600" y1="364.0" y2="364.0" stroke="#c3c2b7" stroke-width="1"/>
+<text x="56" y="368.0" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="12" fill="#898781" text-anchor="end" style="font-variant-numeric: tabular-nums">0</text>
+<line x1="64" x2="600" y1="303.0" y2="303.0" stroke="#e1e0d9" stroke-width="1"/>
+<text x="56" y="307.0" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="12" fill="#898781" text-anchor="end" style="font-variant-numeric: tabular-nums">3,5K</text>
+<line x1="64" x2="600" y1="242.0" y2="242.0" stroke="#e1e0d9" stroke-width="1"/>
+<text x="56" y="246.0" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="12" fill="#898781" text-anchor="end" style="font-variant-numeric: tabular-nums">7K</text>
+<line x1="64" x2="600" y1="181.0" y2="181.0" stroke="#e1e0d9" stroke-width="1"/>
+<text x="56" y="185.0" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="12" fill="#898781" text-anchor="end" style="font-variant-numeric: tabular-nums">10,5K</text>
+<line x1="64" x2="600" y1="120.0" y2="120.0" stroke="#e1e0d9" stroke-width="1"/>
+<text x="56" y="124.0" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="12" fill="#898781" text-anchor="end" style="font-variant-numeric: tabular-nums">14K</text>
+<text x="24" y="104" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="12" fill="#898781">sessões/s</text>
+<rect x="28" y="74" width="12" height="12" rx="3" fill="#2a78d6"/>
+<text x="48" y="84" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="12.5" fill="#52514e">threads</text>
+<rect x="119.0" y="74" width="12" height="12" rx="3" fill="#1baf7a"/>
+<text x="139.0" y="84" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="12.5" fill="#52514e">fibers</text>
+<rect x="203.0" y="74" width="12" height="12" rx="3" fill="#eda100"/>
+<text x="223.0" y="84" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="12.5" fill="#52514e">prefork + fibers</text>
+<rect x="357.0" y="74" width="12" height="12" rx="3" fill="#e87ba4"/>
+<text x="377.0" y="84" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="12.5" fill="#52514e">Ractors + fibers</text>
+<path d="M83.0,364.0 V343.8 Q83.0,339.8 87.0,339.8 H103.0 Q107.0,339.8 107.0,343.8 V364.0 Z" fill="#2a78d6"/>
+<path d="M109.0,364.0 V310.7 Q109.0,306.7 113.0,306.7 H129.0 Q133.0,306.7 133.0,310.7 V364.0 Z" fill="#1baf7a"/>
+<path d="M135.0,364.0 V243.8 Q135.0,239.8 139.0,239.8 H155.0 Q159.0,239.8 159.0,243.8 V364.0 Z" fill="#eda100"/>
+<path d="M161.0,364.0 V255.8 Q161.0,251.8 165.0,251.8 H181.0 Q185.0,251.8 185.0,255.8 V364.0 Z" fill="#e87ba4"/>
+<path d="M281.0,364.0 V341.0 Q281.0,337.0 285.0,337.0 H301.0 Q305.0,337.0 305.0,341.0 V364.0 Z" fill="#2a78d6"/>
+<path d="M307.0,364.0 V303.5 Q307.0,299.5 311.0,299.5 H327.0 Q331.0,299.5 331.0,303.5 V364.0 Z" fill="#1baf7a"/>
+<path d="M333.0,364.0 V157.7 Q333.0,153.7 337.0,153.7 H353.0 Q357.0,153.7 357.0,157.7 V364.0 Z" fill="#eda100"/>
+<path d="M359.0,364.0 V208.6 Q359.0,204.6 363.0,204.6 H379.0 Q383.0,204.6 383.0,208.6 V364.0 Z" fill="#e87ba4"/>
+<path d="M479.0,364.0 V342.6 Q479.0,338.6 483.0,338.6 H499.0 Q503.0,338.6 503.0,342.6 V364.0 Z" fill="#2a78d6"/>
+<text x="491.0" y="332.6" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="11.5" fill="#0b0b0b" text-anchor="middle" style="font-variant-numeric: tabular-nums">1,5K</text>
+<path d="M505.0,364.0 V302.7 Q505.0,298.7 509.0,298.7 H525.0 Q529.0,298.7 529.0,302.7 V364.0 Z" fill="#1baf7a"/>
+<text x="517.0" y="292.7" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="11.5" fill="#0b0b0b" text-anchor="middle" style="font-variant-numeric: tabular-nums">3,7K</text>
+<path d="M531.0,364.0 V151.4 Q531.0,147.4 535.0,147.4 H551.0 Q555.0,147.4 555.0,151.4 V364.0 Z" fill="#eda100"/>
+<text x="543.0" y="141.4" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="11.5" fill="#0b0b0b" text-anchor="middle" style="font-variant-numeric: tabular-nums">12,4K</text>
+<path d="M557.0,364.0 V198.9 Q557.0,194.9 561.0,194.9 H577.0 Q581.0,194.9 581.0,198.9 V364.0 Z" fill="#e87ba4"/>
+<text x="569.0" y="188.9" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="11.5" fill="#0b0b0b" text-anchor="middle" style="font-variant-numeric: tabular-nums">9,7K</text>
+<text x="134.0" y="384" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="12" fill="#898781" text-anchor="middle">1.000</text>
+<text x="332.0" y="384" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="12" fill="#898781" text-anchor="middle">5.000</text>
+<text x="530.0" y="384" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="12" fill="#898781" text-anchor="middle">10.000</text>
+<text x="332" y="408" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="12" fill="#898781" text-anchor="middle">sessões simultâneas</text>
+</svg>
