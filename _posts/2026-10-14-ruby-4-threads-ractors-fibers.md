@@ -219,6 +219,22 @@ reported it as [Bug #22439](https://bugs.ruby-lang.org/issues/22439), with repro
 per-version table. It matters because **any library that logs exceptions from inside Ractors can
 crash the process** on 4.1.
 
+> **Update (2026-10-14):** Ruby core answered within hours, and the diagnosis was better than
+> mine. The crash only reproduces when Ruby is built with **GCC 16**, which my 4.1 builds were. GCC
+> 16 computes the address of the thread-local "current execution context" once at the start of the
+> constant lookup and reuses it. Resolving an *autoloaded* constant (`Ruby::Prism`, used by
+> `syntax_tree`) can block, and the M:N scheduler may then resume the thread **on a different native
+> thread**, so the cached address points at the wrong context. The ticket was split in two:
+> [#22440](https://bugs.ruby-lang.org/issues/22440) (the SEGV, fixed in
+> [ruby/ruby#19348](https://github.com/ruby/ruby/pull/19348)) and
+> [#22442](https://bugs.ruby-lang.org/issues/22442) (the missing snippet: concurrent callers skipped
+> error_highlight's lazy loading, fixed in [ruby/ruby#19352](https://github.com/ruby/ruby/pull/19352)).
+> I built master with both patches using the same GCC 16: all my reproducers went from crashing
+> to 10/10 clean runs, and the snippet now shows up in every Ractor. So "a 4.1 regression" isn't
+> quite right: it's a VM bug that GCC 16 exposes. The 4.0.x binaries I compared against were built
+> with an older GCC.
+{: .prompt-info }
+
 ## 7. Method mistakes I made (and fixed)
 
 I'm writing these down because benchmarks lie easily:
@@ -231,6 +247,11 @@ I'm writing these down because benchmarks lie easily:
   once: zero failures. The problem only showed up with *sustained* rates of new connections, and the
   server's kernel counters showed **zero drops**. SYNs were getting lost on the way (router or ISP).
   In other words, testing from home was measuring my network, not the server.
+- **A comparison confounded by the compiler.** I called the segfault a "4.1 regression" because it
+  crashed on 4.1 and not on 4.0.x. But my 4.1 builds were compiled locally with GCC 16, and the 4.0.x
+  ones were prebuilt binaries made with an older GCC. Ruby core found that the compiler was the
+  trigger (see the update in section 6). Lesson: when comparing versions, keep everything else
+  identical, *including how the binary was built*, and record the compiler with the results.
 - **A pretty hypothesis that didn't hold.** I suspected the order in which connections were closed
   (TIME_WAIT on the server + NAT reusing ports) was causing the losses. I tested both orders: same
   symptom. Hypothesis discarded.

@@ -218,6 +218,23 @@ ele derruba a VM. Com um Ractor só, não cai, mas o trecho destacado some. Rela
 relevante porque **qualquer biblioteca que registre exceções em log dentro de Ractors pode derrubar
 o processo** na 4.1.
 
+> **Atualização (2026-10-14):** o time do Ruby respondeu em poucas horas, com um diagnóstico melhor
+> que o meu. O crash só acontece quando o Ruby é compilado com o **GCC 16**, que foi o caso das minhas
+> builds da 4.1. O GCC 16 calcula uma única vez, no início da busca da constante, o endereço da
+> variável *thread-local* com o "contexto de execução atual" e reaproveita esse valor. Resolver uma
+> constante com *autoload* (`Ruby::Prism`, usada pelo `syntax_tree`) pode bloquear, e o escalonador
+> M:N pode retomar a thread **em outra thread nativa**. A partir daí, o endereço guardado aponta para
+> o contexto errado. O ticket foi dividido em dois: [#22440](https://bugs.ruby-lang.org/issues/22440)
+> (o SEGV, corrigido em [ruby/ruby#19348](https://github.com/ruby/ruby/pull/19348)) e
+> [#22442](https://bugs.ruby-lang.org/issues/22442) (o trecho que sumia: chamadas simultâneas pulavam
+> o carregamento preguiçoso do error_highlight, corrigido em
+> [ruby/ruby#19352](https://github.com/ruby/ruby/pull/19352)). Compilei o master com os dois patches,
+> usando o mesmo GCC 16: todos os meus reprodutores passaram de crash para 10/10 execuções limpas, e
+> o trecho destacado aparece em todos os Ractors. Então "regressão da 4.1" não é bem o termo: é um
+> bug da VM que o GCC 16 expõe. As versões 4.0.x com que comparei foram compiladas com um GCC mais
+> antigo.
+{: .prompt-info }
+
 ## 7. Erros de método que cometi (e corrigi)
 
 Registro isto porque benchmark mente fácil:
@@ -230,6 +247,12 @@ Registro isto porque benchmark mente fácil:
   vez: zero falhas. O problema só aparecia com *taxas sustentadas* de conexões novas, e os contadores
   do kernel do servidor mostraram **zero descartes**. Os SYN se perdiam no caminho (roteador ou
   operadora). Ou seja: o teste a partir de casa media a minha rede, não o servidor.
+- **Uma comparação confundida pelo compilador.** Chamei o segfault de "regressão da 4.1" porque
+  ele acontecia na 4.1 e não na 4.0.x. Só que as minhas builds da 4.1 foram compiladas localmente com
+  o GCC 16, e as da 4.0.x eram binários prontos, feitos com um GCC mais antigo. O time do Ruby
+  descobriu que o gatilho era o compilador (ver a atualização na seção 6). Lição: ao comparar
+  versões, mantenha todo o resto igual, *inclusive como o binário foi compilado*, e registre o
+  compilador junto com os resultados.
 - **Uma hipótese bonita que não se confirmou.** Suspeitei que a ordem de fechamento das conexões
   (TIME_WAIT no servidor + NAT reaproveitando portas) causasse as perdas. Testei as duas ordens: o
   sintoma era o mesmo. Hipótese descartada.
